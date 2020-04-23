@@ -82,8 +82,15 @@ class Car {
   fill(gallons) {
     this.tank += gallons;
   }
-  land() {
-    this.isFlying = false;
+  drive(distance) {
+    this.odometer += 1;
+    this.tank -=1;
+  }
+
+  alarm(drive) {
+    if(this.tank  == 0){
+      return "I ran out of fuel at " + this.odometer + " miles!";
+    }
   }
 }
 
@@ -100,9 +107,10 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
+  constructor(argument) {
+    this.name = argument;
+    this.age = argument;
+    this.location = argument;
   }
   takeOff() {
     this.isFlying = true;
