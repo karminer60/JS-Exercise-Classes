@@ -112,12 +112,10 @@ class Lambdasian {
     this.age = argument;
     this.location = argument;
   }
-  takeOff() {
-    this.isFlying = true;
+  speak(name, location) {
+    return 'Hello my name is' + name "I am from " + location;
   }
-  land() {
-    this.isFlying = false;
-  }
+  
 }
 
 /*
