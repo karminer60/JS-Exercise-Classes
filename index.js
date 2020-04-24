@@ -161,6 +161,8 @@ let newInstructor = new Instructor({
   catchPhrase: 'Hello there!'
 });
 
+
+
 console.log(newInstructor.demo('biology'));
 /*
   TASK 5
@@ -177,17 +179,24 @@ console.log(newInstructor.demo('biology'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
+class Student extends Instructor {
+  constructor(attributes){
+    super(attributes)// this replaces parent.call
+    // special attributes for the child go here
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }// special methods for the child 
+  listSubjects(subject){
+    return subject.toString();
   }
-  takeOff() {
-    this.isFlying = true;
+  PRAssignment(student,subject){
+    return `${student.name} has submitted a PR for ${subject}`;
   }
-  land() {
-    this.isFlying = false;
+  sprintChallenge(student,subject){
+    return `${student.name} has begun sprint challenge on ${subject}`;
   }
+
 }
 
 /*
