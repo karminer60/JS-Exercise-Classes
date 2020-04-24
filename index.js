@@ -94,6 +94,8 @@ class Car {
   }
 }
 
+
+
 /*
   TASK 3
     - Write a Lambdasian class.
@@ -108,15 +110,17 @@ class Car {
 */
 class Lambdasian {
   constructor(argument) {
-    this.name = argument;
-    this.age = argument;
-    this.location = argument;
+    this.name = argument.name;
+    this.age = argument.age;
+    this.location = argument.location;
   }
-  speak(name, location) {
-    return 'Hello my name is' + name "I am from " + location;
+  speak() {
+    return 'Hello my name is ' + this.name + ", I am from " + this.location;
   }
   
 }
+
+
 
 /*
   TASK 4
@@ -132,19 +136,32 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
+class Instructor extends Lambdasian{
+  constructor(attributes){
+    super(attributes)// this replaces parent.call
+    // special attributes for the child go here
+    this.specialty = attributes.specialty;
+    this.favLanguage = attributes.favLanguage;
+    this.catchPhrase = attributes.catchPhrase;
+  }// special methods for the child 
+  demo(subject){
+    return `Today we are learning about ${subject}`;
   }
-  takeOff() {
-    this.isFlying = true;
-  }
-  land() {
-    this.isFlying = false;
+  grade(student,subject){
+    return `${student.name} receives a perfect score on ${subject}`;
   }
 }
 
+let newInstructor = new Instructor({
+  name : 'Karina',
+  age: 28,
+  location: 'San Francisco',
+  subject: 'biology',
+  specialty: 'marine',
+  catchPhrase: 'Hello there!'
+});
+
+console.log(newInstructor.demo('biology'));
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
