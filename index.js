@@ -187,8 +187,8 @@ class Student extends Instructor {
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
   }// special methods for the child 
-  listSubjects(subject){
-    return subject.toString();
+  listSubjects(subjects){
+    return subjects.toString();
   }
   PRAssignment(student,subject){
     return `${student.name} has submitted a PR for ${subject}`;
@@ -212,16 +212,18 @@ class Student extends Instructor {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
+class ProjectManager extends Instructor {
+  constructor(attributes){
+    super(attributes)// this replaces parent.call
+    // special attributes for the child go here
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }// special methods for the child 
+  standUp(channel,student, subject){
+    return`${student.name} has submitted a PR for ${subject}`;;
   }
-  takeOff() {
-    this.isFlying = true;
-  }
-  land() {
-    this.isFlying = false;
+  debugsCode(student,subject){
+    return `${name} debugs ${student.name}'s code on ${subject}`;
   }
 }
 
