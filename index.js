@@ -122,6 +122,7 @@ class Lambdasian {
 
 
 
+
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
@@ -147,13 +148,13 @@ class Instructor extends Lambdasian{
   demo(subject){
     return `Today we are learning about ${subject}`;
   }
-  grade(student,subject){
+  grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
 }
 
 let newInstructor = new Instructor({
-  name : 'Karina',
+  name: 'Karina',
   age: 28,
   location: 'San Francisco',
   subject: 'biology',
@@ -161,9 +162,9 @@ let newInstructor = new Instructor({
   catchPhrase: 'Hello there!'
 });
 
-
-
 console.log(newInstructor.demo('biology'));
+
+
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -179,7 +180,7 @@ console.log(newInstructor.demo('biology'));
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student extends Instructor {
+class Student extends Lambdasian {
   constructor(attributes){
     super(attributes)// this replaces parent.call
     // special attributes for the child go here
@@ -187,17 +188,33 @@ class Student extends Instructor {
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
   }// special methods for the child 
-  listSubjects(subjects){
-    return subjects.toString();
+  listSubjects(){
+    return this.favSubjects.toString();
   }
-  PRAssignment(student,subject){
-    return `${student.name} has submitted a PR for ${subject}`;
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
   }
-  sprintChallenge(student,subject){
-    return `${student.name} has begun sprint challenge on ${subject}`;
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 
 }
+
+let newStudent = new Student({
+  name : 'Erica',
+  age: 30,
+  location: 'Chicago',
+  subject: 'history',
+  specialty: 'European',
+  catchPhrase: 'Hola',
+  previousBackground: 'veterinary medicine',
+  className: 'web31',
+  favSubjects: ['biology', 'medicine', 'computer science'] 
+});
+
+console.log(newStudent.listSubjects( ));
+
+console.log(newInstructor.grade(newStudent, 'astronomy'));
 
 /*
   TASK 6
@@ -219,13 +236,15 @@ class ProjectManager extends Instructor {
     this.gradClassName = attributes.gradClassName;
     this.favInstructor = attributes.favInstructor;
   }// special methods for the child 
-  standUp(channel,student, subject){
-    return`${student.name} has submitted a PR for ${subject}`;;
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
   }
   debugsCode(student,subject){
-    return `${name} debugs ${student.name}'s code on ${subject}`;
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
+
+
 
 /*
   STRETCH PROBLEM (no tests!)
